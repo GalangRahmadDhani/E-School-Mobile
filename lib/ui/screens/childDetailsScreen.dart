@@ -200,7 +200,8 @@ class _ChildDetailsScreenState extends State<ChildDetailsScreen> {
                           height: boxConstraints.maxHeight * (0.0125),
                         ),
                         Text(
-                          "${Utils.getTranslatedLabel(context, classKey)} - ${widget.student.classSection?.fullName}",
+                          "${widget.student.classSection?.fullName}",
+                          // "${Utils.getTranslatedLabel(context, classKey)} - ${widget.student.classSection?.fullName}",
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(

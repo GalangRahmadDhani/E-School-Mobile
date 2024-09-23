@@ -7,10 +7,11 @@ class AttendanceDay {
     required this.date,
     required this.remark,
   });
+
   late final int id;
   late final int studentId;
   late final int sessionYearId;
-  late final int type;
+  late final int type; // 0 = absent, 1 = hadir, 2 = sakit, 3 = izin, 4 = alpha
   late final DateTime date;
   late final String remark;
 
@@ -21,5 +22,22 @@ class AttendanceDay {
     type = json['type'] ?? -1;
     date = json['date'] == null ? DateTime.now() : DateTime.parse(json['date']);
     remark = json['remark'] ?? "";
+  }
+
+  String getAttendanceType() {
+    switch (type) {
+      case 0:
+        return "Absent";
+      case 1:
+        return "Hadir";
+      case 2:
+        return "Sakit";
+      case 3:
+        return "Izin";
+      case 4:
+        return "Alpha";
+      default:
+        return "Unknown";
+    }
   }
 }

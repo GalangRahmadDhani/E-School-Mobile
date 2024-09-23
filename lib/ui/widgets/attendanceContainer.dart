@@ -146,8 +146,8 @@ class _AttendanceContainerState extends State<AttendanceContainer> {
                     return true;
                   },
                   child: Padding(
-                    padding: const EdgeInsets.all(0.1),
-                    child: Wrap(
+                    padding: const EdgeInsets.all(0.1), // Bottom padding of 0.1
+                    child: Wrap( // Makes height dynamic based on content
                       children: [
                         Container(
                           width: MediaQuery.of(context).size.width, // Full width
@@ -163,37 +163,40 @@ class _AttendanceContainerState extends State<AttendanceContainer> {
                                 ),
                               ),
                               SizedBox(height: 10), // Example spacing
-                              Align(
-                                alignment: Alignment.centerRight, // Aligns the text to the right
-                                child: Text(
-                                  'Sakit: ',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
+                              
+                              // Row for 'Sakit'
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center, // Centers the row
+                                children: [
+                                  Text(
+                                    'Sakit: ',
+                                    style: TextStyle(fontSize: 16),
                                   ),
-                                ),
+                                ],
                               ),
                               SizedBox(height: 10), // Example spacing
-                              Align(
-                                alignment: Alignment.centerRight, // Aligns the text to the right
-                                child: Text(
-                                  'Izin: ',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
+                              
+                              // Row for 'Izin'
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center, // Centers the row
+                                children: [
+                                  Text(
+                                    'Izin: ',
+                                    style: TextStyle(fontSize: 16),
                                   ),
-                                ),
+                                ],
                               ),
                               SizedBox(height: 10), // Example spacing
-                              Align(
-                                alignment: Alignment.centerRight, // Aligns the text to the right
-                                child: Text(
-                                  'Alpha: ',
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
+                              
+                              // Row for 'Alpha'
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center, // Centers the row
+                                children: [
+                                  Text(
+                                    'Alpha: ',
+                                    style: TextStyle(fontSize: 16),
                                   ),
-                                ),
+                                ],
                               ),
                               // Add more content for the modal sheet here
                             ],
@@ -494,7 +497,7 @@ class _AttendanceContainerState extends State<AttendanceContainer> {
                     .where((element) => element.type == 1)
                     .toList();
                 List<AttendanceDay> absentDays = state.attendanceDays
-                    .where((element) => element.type == 0)
+                    .where((element) => element.type == 0 || element.type == 2 || element.type == 3)
                     .toList();
 
                 return Padding(
