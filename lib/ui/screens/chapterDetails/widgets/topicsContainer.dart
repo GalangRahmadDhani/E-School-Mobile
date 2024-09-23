@@ -95,6 +95,7 @@ class TopicsContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('TopicsContainer()');
     return Column(
       children: topics.isEmpty
           ? [

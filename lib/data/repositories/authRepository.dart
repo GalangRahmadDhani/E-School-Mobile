@@ -83,7 +83,7 @@ class AuthRepository {
         url: Api.studentLogin,
         useAuthToken: false,
       );
-
+  
       return {
         "jwtToken": result['token'],
         "student": Student.fromJson(Map.from(result['data']))

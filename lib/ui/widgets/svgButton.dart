@@ -15,6 +15,7 @@ class SvgButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('SvgButton()');
     return InkWell(
       onTap: () {
         onTap.call();

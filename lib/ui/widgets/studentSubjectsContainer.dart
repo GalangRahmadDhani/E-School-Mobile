@@ -81,7 +81,7 @@ class StudentSubjectsContainer extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 color: Utils.getColorScheme(context).secondary,
-                fontWeight: FontWeight.w400,
+                fontWeight: FontWeight.w800,
                 fontSize: 14,
               ),
             )
@@ -93,6 +93,7 @@ class StudentSubjectsContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('StudentSubjectsContainer()');
     return subjects.isEmpty
         ? const SizedBox()
         : Container(

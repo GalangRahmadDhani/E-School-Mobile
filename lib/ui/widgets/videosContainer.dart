@@ -95,6 +95,7 @@ class VideosContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('VideosContainer()');
     return Column(
       children: studyMaterials.isEmpty
           ? [const NoDataContainer(titleKey: noVideosUploadedKey)]

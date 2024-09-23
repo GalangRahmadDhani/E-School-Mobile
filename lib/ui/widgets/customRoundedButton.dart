@@ -40,6 +40,7 @@ class CustomRoundedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('CustomRoundedButton()');
     return Material(
       shadowColor: shadowColor ?? Colors.black54,
       elevation: elevation ?? 0.0,

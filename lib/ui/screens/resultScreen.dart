@@ -226,7 +226,7 @@ class ResultScreen extends StatelessWidget {
     required SubjectMark subjectMark,
   }) {
     final String subjectName =
-        '${subjectMark.subjectName} ${subjectMark.subjectType == 'Practical' ? '(P)' : '(T)'}';
+        '${subjectMark.subjectCode} ${subjectMark.subjectType == 'Practical' ? '(P)' : '(T)'}';
     return Padding(
       padding: const EdgeInsetsDirectional.only(
         bottom: 10,
@@ -481,6 +481,7 @@ class ResultScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('ResultScreen()');
     return Scaffold(
       body: Stack(
         children: [

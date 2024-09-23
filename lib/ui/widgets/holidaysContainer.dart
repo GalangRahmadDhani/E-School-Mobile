@@ -123,73 +123,77 @@ class _HolidaysContainerState extends State<HolidaysContainer> {
     );
   }
 
-  Widget _buildCalendarContainer() {
-    return Container(
-      padding: const EdgeInsets.all(5),
-      decoration: BoxDecoration(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        boxShadow: [
-          BoxShadow(
-            color: Theme.of(context).colorScheme.secondary.withOpacity(0.075),
-            offset: const Offset(5.0, 5),
-            blurRadius: 10,
-          )
-        ],
-        borderRadius: BorderRadius.circular(15.0),
-      ),
-      margin: const EdgeInsets.only(top: 20),
-      child: TableCalendar(
-        headerVisible: false,
-        daysOfWeekHeight: 40,
-        onPageChanged: (DateTime dateTime) {
-          setState(() {
-            focusedDay = dateTime;
-          });
-          updateMonthViceHolidays();
-          //
-        },
+Widget _buildCalendarContainer() {
+  // Definisikan nama hari dalam bahasa Indonesia
+  final daysOfWeekInIndonesian = ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'];
 
-        onCalendarCreated: (contoller) {
-          calendarPageController = contoller;
-        },
-
-        holidayPredicate: (dateTime) {
-          return holidays.indexWhere(
-                (element) =>
-                    Utils.formatDate(dateTime) ==
-                    Utils.formatDate(element.date),
-              ) !=
-              -1;
-        },
-
-        availableGestures: AvailableGestures.none,
-        calendarStyle: CalendarStyle(
-          isTodayHighlighted: false,
-          holidayTextStyle:
-              TextStyle(color: Theme.of(context).scaffoldBackgroundColor),
-          holidayDecoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: Theme.of(context).colorScheme.primary,
-          ),
+  return Container(
+    padding: const EdgeInsets.all(5),
+    decoration: BoxDecoration(
+      color: Theme.of(context).scaffoldBackgroundColor,
+      boxShadow: [
+        BoxShadow(
+          color: Theme.of(context).colorScheme.secondary.withOpacity(0.075),
+          offset: const Offset(5.0, 5),
+          blurRadius: 10,
+        )
+      ],
+      borderRadius: BorderRadius.circular(15.0),
+    ),
+    margin: const EdgeInsets.only(top: 20),
+    child: TableCalendar(
+      headerVisible: false,
+      daysOfWeekHeight: 40,
+      onPageChanged: (DateTime dateTime) {
+        setState(() {
+          focusedDay = dateTime;
+        });
+        updateMonthViceHolidays();
+      },
+      onCalendarCreated: (contoller) {
+        calendarPageController = contoller;
+      },
+      holidayPredicate: (dateTime) {
+        return holidays.indexWhere(
+              (element) =>
+                  Utils.formatDate(dateTime) ==
+                  Utils.formatDate(element.date),
+            ) !=
+            -1;
+      },
+      availableGestures: AvailableGestures.none,
+      calendarStyle: CalendarStyle(
+        isTodayHighlighted: false,
+        holidayTextStyle:
+            TextStyle(color: Theme.of(context).scaffoldBackgroundColor),
+        holidayDecoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Theme.of(context).colorScheme.primary,
         ),
-        daysOfWeekStyle: DaysOfWeekStyle(
-          weekendStyle: TextStyle(
-            color: Theme.of(context).colorScheme.primary,
-            fontWeight: FontWeight.bold,
-          ),
-          weekdayStyle: TextStyle(
-            color: Theme.of(context).colorScheme.primary,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        headerStyle:
-            const HeaderStyle(titleCentered: true, formatButtonVisible: false),
-        firstDay: firstDay, //start education year
-        lastDay: lastDay, //end education year
-        focusedDay: focusedDay,
       ),
-    );
-  }
+      daysOfWeekStyle: DaysOfWeekStyle(
+        weekendStyle: TextStyle(
+          color: Theme.of(context).colorScheme.primary,
+          fontWeight: FontWeight.bold,
+        ),
+        weekdayStyle: TextStyle(
+          color: Theme.of(context).colorScheme.primary,
+          fontWeight: FontWeight.bold,
+        ),
+        dowTextFormatter: (date, locale) {
+          // Mengatur nama hari dalam bahasa Indonesia
+          return daysOfWeekInIndonesian[date.weekday - 1];
+        },
+      ),
+      headerStyle:
+          const HeaderStyle(titleCentered: true, formatButtonVisible: false),
+      firstDay: firstDay, //start education year
+      lastDay: lastDay, //end education year
+      focusedDay: focusedDay,
+    ),
+  );
+}
+
 
   Widget _buildHolidaysCalendar() {
     return Align(
@@ -382,6 +386,7 @@ class _HolidaysContainerState extends State<HolidaysContainer> {
 
   @override
   Widget build(BuildContext context) {
+    print('HolidaysContainer()');
     return Stack(
       children: [
         _buildHolidaysCalendar(),

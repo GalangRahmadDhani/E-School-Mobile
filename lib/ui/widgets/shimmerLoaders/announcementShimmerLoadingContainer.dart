@@ -8,6 +8,7 @@ class AnnouncementShimmerLoadingContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('AnnouncementShimmerLoadingContainer()');
     return Container(
       margin: const EdgeInsets.only(bottom: 25.0),
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12.5),

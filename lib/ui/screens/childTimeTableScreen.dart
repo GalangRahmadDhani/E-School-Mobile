@@ -21,6 +21,7 @@ class ChildTimeTableScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('ChildTimeTableScreen()');
     return Scaffold(
       body: TimeTableContainer(
         childId: childId,

@@ -121,6 +121,8 @@ class _AssignmentsContainerState extends State<AssignmentsContainer> {
     );
   }
 
+  // KODE ORIGINAL
+
   Widget _buildMySubjectsListContainer() {
     return BlocBuilder<StudentSubjectsAndSlidersCubit,
         StudentSubjectsAndSlidersState>(
@@ -150,7 +152,7 @@ class _AssignmentsContainerState extends State<AssignmentsContainer> {
       },
     );
   }
-
+  
   Widget _buildAppBarContainer() {
     return ScreenTopBackgroundContainer(
       child: LayoutBuilder(
@@ -253,6 +255,7 @@ class _AssignmentsContainerState extends State<AssignmentsContainer> {
 
   @override
   Widget build(BuildContext context) {
+    print('AssignmentsContainer()');
     return Stack(
       children: [
         CustomRefreshIndicator(

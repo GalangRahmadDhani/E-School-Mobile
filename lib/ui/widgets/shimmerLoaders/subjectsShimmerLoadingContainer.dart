@@ -41,7 +41,7 @@ class SubjectsShimmerLoadingContainer extends StatelessWidget {
       child: Container(
         width: MediaQuery.of(context).size.width,
         margin: EdgeInsets.symmetric(
-          horizontal: MediaQuery.of(context).size.width * (0.075),
+          horizontal: MediaQuery.of(context).size.width * (0.07),
         ),
         child: LayoutBuilder(
           builder: (context, boxConstraints) {

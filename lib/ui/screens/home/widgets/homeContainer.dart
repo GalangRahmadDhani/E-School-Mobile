@@ -166,6 +166,7 @@ class _HomeContainerState extends State<HomeContainer> {
 
   @override
   Widget build(BuildContext context) {
+    print('HomeContainer()');
     return Stack(
       children: [
         Align(

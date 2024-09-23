@@ -32,6 +32,8 @@ class _AttendanceContainerState extends State<AttendanceContainer> {
 
   PageController? calendarPageController;
 
+  bool isModalOpen = false;
+  
   @override
   void initState() {
     Future.delayed(Duration.zero, () {
@@ -91,6 +93,7 @@ class _AttendanceContainerState extends State<AttendanceContainer> {
             style: TextStyle(
               color: Theme.of(context).scaffoldBackgroundColor,
               fontWeight: FontWeight.w600,
+              fontSize: 20.0,
             ),
           ),
           SizedBox(
@@ -110,6 +113,156 @@ class _AttendanceContainerState extends State<AttendanceContainer> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildAttendanceCounterWithModalContainer({
+    required String title,
+    required BoxConstraints boxConstraints,
+    required String value,
+    required Color backgroundColor,
+  }) {
+    return GestureDetector(
+      onTap: () {
+        // Toggle the state first before showing the modal
+        setState(() {
+          isModalOpen = !isModalOpen;
+        });
+
+        // Show the modal sheet without waiting for its return
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true, // Allows modal to take dynamic height
+          builder: (context) {
+            return StatefulBuilder(
+              builder: (BuildContext context, StateSetter modalSetState) {
+                return WillPopScope(
+                  onWillPop: () async {
+                    // When the modal is closed, reset the arrow state
+                    setState(() {
+                      isModalOpen = false;
+                    });
+                    return true;
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(0.1),
+                    child: Wrap(
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width, // Full width
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min, // Adjusts height based on content
+                            children: [
+                              Text(
+                                'Detail Absen',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(height: 10), // Example spacing
+                              Align(
+                                alignment: Alignment.centerRight, // Aligns the text to the right
+                                child: Text(
+                                  'Sakit: ',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 10), // Example spacing
+                              Align(
+                                alignment: Alignment.centerRight, // Aligns the text to the right
+                                child: Text(
+                                  'Izin: ',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 10), // Example spacing
+                              Align(
+                                alignment: Alignment.centerRight, // Aligns the text to the right
+                                child: Text(
+                                  'Alpha: ',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              // Add more content for the modal sheet here
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+          },
+        ).whenComplete(() {
+          // Ensure the arrow icon resets to down when modal is closed
+          setState(() {
+            isModalOpen = false;
+          });
+        });
+      },
+      child: Container(
+        height: boxConstraints.maxWidth * 0.425, // Height according to box constraints
+        width: boxConstraints.maxWidth * 0.425,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: backgroundColor,
+          boxShadow: [
+            BoxShadow(
+              color: backgroundColor.withOpacity(0.25),
+              offset: const Offset(5, 5),
+              blurRadius: 10,
+            )
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              title,
+              style: TextStyle(
+                color: Theme.of(context).scaffoldBackgroundColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 20.0,
+              ),
+            ),
+            SizedBox(
+              height: boxConstraints.maxWidth * (0.45) * (0.125), // Spacing
+            ),
+            CircleAvatar(
+              radius: 25,
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+              child: Center(
+                child: Text(
+                  value,
+                  style: TextStyle(
+                    color: backgroundColor,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
+            // Add the arrow icon below the CircleAvatar
+            Icon(
+              isModalOpen
+                  ? Icons.keyboard_arrow_up // Up arrow when modal is open
+                  : Icons.keyboard_arrow_down, // Down arrow when modal is closed
+              color: Theme.of(context).scaffoldBackgroundColor,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -232,6 +385,7 @@ class _AttendanceContainerState extends State<AttendanceContainer> {
       ),
       margin: const EdgeInsets.only(top: 20),
       child: TableCalendar(
+        locale: 'id_ID',
         headerVisible: false,
         daysOfWeekHeight: 40,
 
@@ -294,7 +448,7 @@ class _AttendanceContainerState extends State<AttendanceContainer> {
             fontWeight: FontWeight.bold,
           ),
           weekdayStyle: TextStyle(
-            color: Theme.of(context).colorScheme.primary,
+            color: Theme.of(context).colorScheme.secondary,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -372,14 +526,14 @@ class _AttendanceContainerState extends State<AttendanceContainer> {
                                     Theme.of(context).colorScheme.onPrimary,
                               ),
                               const Spacer(),
-                              _buildAttendanceCounterContainer(
+                              _buildAttendanceCounterWithModalContainer(
                                 boxConstraints: boxConstraints,
                                 title: Utils.getTranslatedLabel(
-                                  context,
-                                  totalAbsentKey,
+                                  context, 
+                                  totalAbsentKey
                                 ),
                                 value: absentDays.length.toString(),
-                                backgroundColor:
+                                backgroundColor: 
                                     Theme.of(context).colorScheme.error,
                               ),
                             ],
@@ -452,6 +606,7 @@ class _AttendanceContainerState extends State<AttendanceContainer> {
 
   @override
   Widget build(BuildContext context) {
+    print('AttendanceContainer()');
     return Stack(
       children: [
         _buildAttendaceCalendar(),

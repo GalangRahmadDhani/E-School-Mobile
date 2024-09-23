@@ -118,8 +118,8 @@ class _AuthScreenState extends State<AuthScreen> with TickerProviderStateMixin {
                                 maxLines: 3,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(
-                                  fontSize: 16.0,
-                                  fontWeight: FontWeight.w300,
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.w800,
                                   color:
                                       Utils.getColorScheme(context).onSurface,
                                 ),

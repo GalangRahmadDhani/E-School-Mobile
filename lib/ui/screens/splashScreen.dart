@@ -82,9 +82,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.all(25.0),
-                child: SvgPicture.asset(
-                  Utils.getImagePath("appLogo.svg"),
+                padding: const EdgeInsets.all(55.0),
+                child: Image.asset(
+                  'assets/images/e-school-icon.jpg', // Mengganti dengan gambar baru
                 ),
               ),
             ),

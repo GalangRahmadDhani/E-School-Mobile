@@ -17,7 +17,7 @@ class BorderedProfilePictureContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       borderRadius: BorderRadius.circular(
-        heightAndWidth * 0.5,
+        heightAndWidth * 0.55,
       ),
       onTap: () {
         onTap?.call();

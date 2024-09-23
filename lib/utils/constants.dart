@@ -2,8 +2,13 @@ import 'package:eschool/utils/labelKeys.dart';
 
 //database urls
 //Please add your admin panel url here and make sure you do not add '/' at the end of the url
-const String baseUrl = "http://139.99.36.6";
+// const String baseUrl = "https://eschool-saas.wrteam.me";
+// const String baseUrl = "https://eschool.dioo.my.id";
+const String baseUrl = "https://eschool.ac.id";
+// const String baseUrl = "https://expert-eternal-treefrog.ngrok-free.app";
 
+//https://eschool.ac.id
+//https://expert-eternal-treefrog.ngrok-free.app
 // http://139.99.36.6
 //TEST: https://eschoolsaas.thewrteam.in
 //Producttion : https://eschool-saas.wrteam.me
@@ -31,11 +36,11 @@ const bool isDemoVersion = false;
 //to enable and disable default credentials in login page
 const bool showDefaultCredentials = true;
 //default credentials of student
-const String defaultStudentGRNumber = "class1demo@gmail.com";
-const String defaultStudentPassword = "student@123";
+// const String defaultStudentGRNumber = "class1demo@gmail.com";
+// const String defaultStudentPassword = "student@123";
 //default credentials of parent
-const String defaultParentEmail = "guardian@gmail.com";
-const String defaultParentPassword = "guardian@123";
+// const String defaultParentEmail = "guardian@gmail.com";
+// const String defaultParentPassword = "guardian@123";
 
 //animations configuration
 //if this is false all item appearance animations will be turned off

@@ -59,13 +59,13 @@ class _ParentLoginScreenState extends State<ParentLoginScreen>
   final TextEditingController _emailTextEditingController =
       TextEditingController(
           text: showDefaultCredentials
-              ? defaultParentEmail
+              ? ''
               : null); //default email
 
   final TextEditingController _passwordTextEditingController =
       TextEditingController(
           text: showDefaultCredentials
-              ? defaultParentPassword
+              ? ''
               : null); //default password
 
   bool _hidePassword = false;
@@ -155,7 +155,7 @@ class _ParentLoginScreenState extends State<ParentLoginScreen>
           position: _patterntAnimation.drive(
             Tween<Offset>(begin: const Offset(0.0, -1.0), end: Offset.zero),
           ),
-          child: Image.asset(Utils.getImagePath("upper_pattern.png")),
+          child: Image.asset(Utils.getImagePath("upper_pattern_red.png")),
         ),
       ),
     );
@@ -170,7 +170,7 @@ class _ParentLoginScreenState extends State<ParentLoginScreen>
           position: _patterntAnimation.drive(
             Tween<Offset>(begin: const Offset(0.0, 1.0), end: Offset.zero),
           ),
-          child: Image.asset(Utils.getImagePath("lower_pattern.png")),
+          child: Image.asset(Utils.getImagePath("lower_pattern_red.png")),
         ),
       ),
     );
@@ -340,7 +340,7 @@ class _ParentLoginScreenState extends State<ParentLoginScreen>
                                     style: TextStyle(
                                       fontSize: 16.0,
                                       color:
-                                          Utils.getColorScheme(context).primary,
+                                          Utils.getColorScheme(context).secondary,
                                     ),
                                     text: Utils.getTranslatedLabel(
                                       context,
@@ -353,7 +353,7 @@ class _ParentLoginScreenState extends State<ParentLoginScreen>
                                       fontWeight: FontWeight.w500,
                                       fontSize: 16.0,
                                       color: Utils.getColorScheme(context)
-                                          .secondary,
+                                          .primary,
                                     ),
                                     text:
                                         "${Utils.getTranslatedLabel(context, studentKey)}?",

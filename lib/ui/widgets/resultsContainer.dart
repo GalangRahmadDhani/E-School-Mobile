@@ -503,6 +503,7 @@ class _ResultsContainerState extends State<ResultsContainer> {
 
   @override
   Widget build(BuildContext context) {
+    print('ResultsContainer()');
     return BlocBuilder<ResultTabSelectionCubit, ResultTabSelectionState>(
       builder: (context, state) {
         return Stack(

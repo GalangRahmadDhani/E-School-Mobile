@@ -69,31 +69,45 @@ class _PlayVideoScreenState extends State<PlayVideoScreen>
   void initState() {
     if (currentlyPlayingStudyMaterialVideo.studyMaterialType ==
         StudyMaterialType.youtubeVideo) {
-      loadYoutubeController();
+      _loadYoutubeController();
     } else {
-      loadVideoController();
+      _loadVideoController();
     }
     super.initState();
   }
 
   //To load non youtube video
-  void loadVideoController() {
+void _loadVideoController() {
+  if (currentlyPlayingStudyMaterialVideo.fileUrl.isNotEmpty) {
     _videoPlayerController = VideoPlayerController.networkUrl(
       Uri.parse(currentlyPlayingStudyMaterialVideo.fileUrl),
       videoPlayerOptions: VideoPlayerOptions(mixWithOthers: true),
-    )..initialize().then((value) {
-        setState(() {});
-        _videoPlayerController?.play();
+    )
+      ..initialize().then((_) {
+        setState(() {
+          _videoPlayerController?.play();
+        });
+      }).catchError((error) {
+        print("Error initializing VideoPlayer: $error");
       });
     assignedVideoController = true;
+  } else {
+    print("Video URL is empty, cannot load video.");
   }
+}
+
 
   //to load youtube video
-  void loadYoutubeController() {
-    String youTubeId = YoutubePlayer.convertUrlToId(
-          currentlyPlayingStudyMaterialVideo.fileUrl,
-        ) ??
-        "";
+void _loadYoutubeController() {
+  try {
+    String? youTubeId = YoutubePlayer.convertUrlToId(
+      currentlyPlayingStudyMaterialVideo.fileUrl,
+    );
+
+    if (youTubeId == null) {
+      print("YouTube ID is null, cannot initialize controller.");
+      return;
+    }
 
     _youtubePlayerController = YoutubePlayerController(
       initialVideoId: youTubeId,
@@ -103,15 +117,19 @@ class _PlayVideoScreenState extends State<PlayVideoScreen>
       ),
     );
     assignedVideoController = true;
+  } catch (e, stacktrace) {
+    print("Error loading YouTube controller: $e");
+    print(stacktrace);
   }
+}
 
-  @override
-  void dispose() {
-    controlsMenuAnimationController.dispose();
-    _youtubePlayerController?.dispose();
-    _videoPlayerController?.dispose();
-    super.dispose();
-  }
+@override
+void dispose() {
+  controlsMenuAnimationController.dispose();
+  _youtubePlayerController?.dispose();
+  _videoPlayerController?.dispose();
+  super.dispose();
+}
 
   //To show play/pause button and and other control related details
   Widget _buildVideoControlMenuContainer(Orientation orientation) {
@@ -278,9 +296,9 @@ class _PlayVideoScreenState extends State<PlayVideoScreen>
 
           if (currentlyPlayingStudyMaterialVideo.studyMaterialType ==
               StudyMaterialType.youtubeVideo) {
-            loadYoutubeController();
+            _loadYoutubeController();
           } else {
-            loadVideoController();
+            _loadVideoController();
           }
           setState(() {});
         },
@@ -385,6 +403,7 @@ class _PlayVideoScreenState extends State<PlayVideoScreen>
 
   @override
   Widget build(BuildContext context) {
+    print('PlayVideoScreen()');
     return OrientationBuilder(
       builder: (context, orientation) {
         return PopScope(

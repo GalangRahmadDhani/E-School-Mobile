@@ -11,6 +11,7 @@ class AnnouncementDetailsContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('AnnouncementDetailsContainer()');
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),

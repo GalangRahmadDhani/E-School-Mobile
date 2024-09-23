@@ -3,6 +3,7 @@ class SubjectMark {
   final double totalMarks;
   final String subjectName;
   final String subjectType;
+  final String subjectCode;
   final double obtainedMarks;
   final String grade;
 
@@ -17,6 +18,7 @@ class SubjectMark {
     required this.obtainedMarks,
     required this.subjectName,
     required this.subjectType,
+    required this.subjectCode,
     // required this.subject,
     required this.passingMarks,
     required this.totalMarks,
@@ -28,6 +30,7 @@ class SubjectMark {
       obtainedMarks: double.parse((json['obtained_marks'] ?? 0).toString()),
       totalMarks: double.parse((json['total_marks'] ?? 0).toString()),
       subjectName: json['subject_name'] ?? '',
+      subjectCode: json['subject_kode'] ?? '',
       subjectType: json['subject_type'] ?? '',
       passingMarks: double.parse((json['passing_marks'] ?? 0).toString()),
       // subject: Subject.fromJson(Map.from(json['subject'] ?? {})),

@@ -44,6 +44,9 @@ class _AssignmentsSubjectContainerState
       child: ListView.builder(
         controller: _scrollController,
         itemBuilder: (context, index) {
+          final isSelected = widget.subjects[index].classSubjectId ==
+              widget.selectedClassSubjectId;
+
           return GestureDetector(
             onTap: () {
               if (widget.cubitAndState == "onlineExam") {
@@ -52,7 +55,7 @@ class _AssignmentsSubjectContainerState
                   return;
                 }
               } else if (widget.cubitAndState == "onlineResult") {
-                //change cubit later - according to Online Result
+                // Change cubit later - according to Online Result
                 if (context.read<ResultsCubit>().state
                     is ResultsFetchInProgress) {
                   return;
@@ -89,28 +92,30 @@ class _AssignmentsSubjectContainerState
                 curve: Curves.easeInOut,
               );
 
-              //
-
               widget.onTapSubject(widget.subjects[index].classSubjectId ?? 0);
             },
             child: Container(
               margin: const EdgeInsetsDirectional.only(end: 20.0),
               decoration: BoxDecoration(
-                color: widget.selectedClassSubjectId ==
-                        widget.subjects[index].classSubjectId
+                color: isSelected
                     ? Theme.of(context).colorScheme.primary
                     : Colors.transparent,
                 borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: isSelected
+                      ? Theme.of(context).scaffoldBackgroundColor
+                      : Theme.of(context).colorScheme.onSurface.withOpacity(0.5),
+                  width: 1.5, // Border width
+                ),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 15),
               alignment: Alignment.center,
               child: Text(
                 widget.subjects[index].classSubjectId == 0
                     ? Utils.getTranslatedLabel(context, allSubjectsKey)
-                    : widget.subjects[index].getSubjectName(context: context),
+                    : widget.subjects[index].getSubjectName(context: context) ?? 'No Name',
                 style: TextStyle(
-                  color: widget.selectedClassSubjectId ==
-                          widget.subjects[index].classSubjectId
+                  color: isSelected
                       ? Theme.of(context).scaffoldBackgroundColor
                       : Theme.of(context).colorScheme.onSurface,
                 ),

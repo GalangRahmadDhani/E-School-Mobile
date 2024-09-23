@@ -151,6 +151,7 @@ class _ChildFeesScreenState extends State<ChildFeesScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('ChildFeesScreen()');
     return Scaffold(
       body: Stack(
         children: [

@@ -345,6 +345,7 @@ class _ChildFeeDetailsScreenState extends State<ChildFeeDetailsScreen> {
   }
 
   Widget _buildAppBar() {
+    print('_buildAppBar()');
     return ScreenTopBackgroundContainer(
       child: LayoutBuilder(
         builder: (context, boxConstraints) {
@@ -440,6 +441,7 @@ class _ChildFeeDetailsScreenState extends State<ChildFeeDetailsScreen> {
   }
 
   Widget _buildPaymentInfoBackgroundContainer({required Widget child}) {
+    print('_buildPaymentInfoBackgroundContainer()');
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
@@ -461,6 +463,7 @@ class _ChildFeeDetailsScreenState extends State<ChildFeeDetailsScreen> {
   }
 
   Widget _buildAdvanceAmountContainer() {
+    print('_buildAdvanceAmountContainer()');
     return Row(
       children: [
         Text(
@@ -506,6 +509,7 @@ class _ChildFeeDetailsScreenState extends State<ChildFeeDetailsScreen> {
 
   ///[If compulsory fee is selected then show payment info]
   Widget _buildCompulsoryInstallmentPaymentInfoContainer() {
+    print('_buildCompulsoryInstallmentPaymentInfoContainer()');
     final outstandingInstallmentsAmount =
         widget.childFeeDetails.getOutstandingInstallmentAmount();
 
@@ -610,6 +614,7 @@ class _ChildFeeDetailsScreenState extends State<ChildFeeDetailsScreen> {
 
   ///[If compulsory fee is selected then show payment info]
   Widget _buildCompulsoryFullPaidPaymentInfoContainer() {
+    print('_buildCompulsoryFullPaidPaymentInfoContainer()');
     final feeAmount = widget.childFeeDetails.totalCompulsoryFees ?? 0.0;
     final dueAmount = (widget.childFeeDetails.dueChargesAmount ?? 0.0);
 
@@ -811,6 +816,7 @@ class _ChildFeeDetailsScreenState extends State<ChildFeeDetailsScreen> {
   }
 
   Widget _buildOptionalFeesContainer() {
+    print('_buildOptionalFeesContainer()');
     return Column(
       children: [
         Column(
@@ -934,6 +940,7 @@ class _ChildFeeDetailsScreenState extends State<ChildFeeDetailsScreen> {
 
   ///[To build the compulsory fee related ui]
   Widget _buildCompulsoryFeesContainer() {
+    print('_buildCompulsoryFeesContainer()');
     return Column(
       children: [
         ///[If user has already made any transaction using installment then hide the due date for full compulsory payment]
@@ -1130,6 +1137,7 @@ class _ChildFeeDetailsScreenState extends State<ChildFeeDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('ChildFeeDetailsScreen()');
     return Scaffold(
       body: Stack(
         children: [

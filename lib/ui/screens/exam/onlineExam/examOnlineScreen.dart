@@ -14,7 +14,8 @@ import 'package:eschool/ui/widgets/customRoundedButton.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_windowmanager/flutter_windowmanager.dart';
+// import 'package:flutter_windowmanager/flutter_windowmanager.dart';
+import 'package:window_manager/window_manager.dart';
 import 'package:lottie/lottie.dart';
 
 import 'package:eschool/utils/labelKeys.dart';
@@ -84,7 +85,17 @@ class ExamOnlineScreenState extends State<ExamOnlineScreen>
     WidgetsBinding.instance.addObserver(this);
 
     if (Platform.isAndroid) {
-      FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+      // Initialize window_manager before use
+      windowManager.ensureInitialized().then((_) {
+        // Prevent screenshots and set window properties
+        try {
+          windowManager.setPreventClose(true);
+          windowManager.setMinimizable(false);
+          windowManager.setClosable(false);
+        } catch (e) {
+          print("Error setting window properties: $e");
+        }
+      });
     }
   }
 
@@ -93,11 +104,21 @@ class ExamOnlineScreenState extends State<ExamOnlineScreen>
     WidgetsBinding.instance.removeObserver(this);
     canGiveExamAgainTimer?.cancel();
     WakelockPlus.disable();
+
     if (Platform.isAndroid) {
-      FlutterWindowManager.clearFlags(FlutterWindowManager.FLAG_SECURE);
+      // Reset or clean up window_manager settings
+      try {
+        windowManager.setPreventClose(false);
+        windowManager.setMinimizable(true);
+        windowManager.setClosable(true);
+      } catch (e) {
+        print("Error resetting window properties: $e");
+      }
     }
+
     super.dispose();
   }
+
 
   void setCanGiveExamTimer() {
     canGiveExamAgainTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -129,44 +150,36 @@ class ExamOnlineScreenState extends State<ExamOnlineScreen>
     }
   }
 
-  void onBackPress() {
-    isExitDialogOpen = true;
-    if (!isExamCompleted) {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          content: Text(
-            Utils.getTranslatedLabel(context, quitExamKey),
+void onBackPress() {
+  if (isExitDialogOpen) return; // Prevent multiple dialogs
+
+  isExitDialogOpen = true;
+  if (!isExamCompleted) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        content: Text(Utils.getTranslatedLabel(context, quitExamKey)),
+        actions: [
+          CupertinoButton(
+            child: Text(Utils.getTranslatedLabel(context, yesKey),
+                style: TextStyle(color: Theme.of(context).colorScheme.error)),
+            onPressed: () {
+              submitExamAnswers();
+              Navigator.of(context).popUntil((route) => route.isFirst);
+            },
           ),
-          actions: [
-            CupertinoButton(
-              child: Text(
-                Utils.getTranslatedLabel(context, yesKey),
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.error,
-                ),
-              ),
-              onPressed: () {
-                submitExamAnswers();
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
-              },
-            ),
-            CupertinoButton(
-              child: Text(
-                Utils.getTranslatedLabel(context, noKey),
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        ),
-      ).then((value) {
-        isExitDialogOpen = false;
-      });
-    }
+          CupertinoButton(
+            child: Text(Utils.getTranslatedLabel(context, noKey)),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ],
+      ),
+    ).then((_) {
+      isExitDialogOpen = false;
+    });
   }
+}
+
 
   Widget buildOnlineExamAppbar(BuildContext context) {
     return ScreenTopBackgroundContainer(
@@ -487,6 +500,7 @@ class ExamOnlineScreenState extends State<ExamOnlineScreen>
 
   @override
   Widget build(BuildContext context) {
+    print('ExamOnlineScreen()');
     return PopScope(
       canPop: false,
       onPopInvoked: (_) {

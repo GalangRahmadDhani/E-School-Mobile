@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:eschool/data/models/sliderDetails.dart';
 import 'package:eschool/utils/constants.dart';
 import 'package:eschool/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:carousel_slider_plus/carousel_slider_plus.dart';
 
 class SlidersContainer extends StatefulWidget {
   final List<SliderDetails> sliders;

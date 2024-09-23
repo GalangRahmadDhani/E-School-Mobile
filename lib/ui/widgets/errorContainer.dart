@@ -71,7 +71,7 @@ class ErrorContainer extends StatelessWidget {
           (showRetryButton ?? true)
               ? CustomRoundedButton(
                   height: 40,
-                  widthPercentage: 0.3,
+                  widthPercentage: 0.37,
                   backgroundColor: retryButtonBackgroundColor ??
                       Theme.of(context).colorScheme.primary,
                   onTap: () {

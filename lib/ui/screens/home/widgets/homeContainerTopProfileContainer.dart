@@ -11,6 +11,7 @@ class HomeContainerTopProfileContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('HomeContainerTopProfileContainer()');
     return ScreenTopBackgroundContainer(
       padding: EdgeInsets.zero,
       child: LayoutBuilder(
@@ -106,11 +107,12 @@ class HomeContainerTopProfileContainer extends StatelessWidget {
                               children: [
                                 Flexible(
                                   child: Text(
-                                    "${Utils.getTranslatedLabel(context, classKey)} : ${context.read<AuthCubit>().getStudentDetails().classSection?.fullName}",
+                                    "${context.read<AuthCubit>().getStudentDetails().classSection?.fullName}",
+                                    // "halo",
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
-                                      fontSize: 12.0,
+                                      fontSize: 18.0,
                                       fontWeight: FontWeight.w400,
                                       color: Theme.of(context)
                                           .scaffoldBackgroundColor,
@@ -135,7 +137,7 @@ class HomeContainerTopProfileContainer extends StatelessWidget {
                                     maxLines: 1,
                                     overflow: TextOverflow.ellipsis,
                                     style: TextStyle(
-                                      fontSize: 12.0,
+                                      fontSize: 18.0,
                                       fontWeight: FontWeight.w400,
                                       color: Theme.of(context)
                                           .scaffoldBackgroundColor,

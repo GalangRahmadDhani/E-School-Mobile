@@ -264,29 +264,29 @@ class AssignmentListContainer extends StatelessWidget {
                                             ),
                                 ],
                               ),
-                              SizedBox(
-                                height: boxConstraints.maxHeight *
-                                    (assignment.instructions.isEmpty
-                                        ? 0
-                                        : 0.05),
-                              ),
-                              assignment.instructions.isEmpty
-                                  ? const SizedBox()
-                                  : Text(
-                                      assignment.instructions,
-                                      //if assignment subject is selected then maxLines should be 2 else it is 1,
-                                      maxLines:
-                                          currentSelectedSubjectId != 0 ? 2 : 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        height: 1.0,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 12.0,
-                                      ),
-                                    ),
+                              // SizedBox(
+                              //   height: boxConstraints.maxHeight *
+                              //       (assignment.instructions.isEmpty
+                              //           ? 0
+                              //           : 0.05),
+                              // ),
+                              // assignment.instructions.isEmpty
+                              //     ? const SizedBox()
+                              //     : Text(
+                              //         assignment.instructions,
+                              //         //if assignment subject is selected then maxLines should be 2 else it is 1,
+                              //         maxLines:
+                              //             currentSelectedSubjectId != 0 ? 2 : 1,
+                              //         overflow: TextOverflow.ellipsis,
+                              //         style: TextStyle(
+                              //           height: 1.0,
+                              //           color: Theme.of(context)
+                              //               .colorScheme
+                              //               .secondary,
+                              //           fontWeight: FontWeight.w400,
+                              //           fontSize: 12.0,
+                              //         ),
+                              //       ),
                               SizedBox(
                                 height: boxConstraints.maxHeight * (0.075),
                               ),
@@ -357,6 +357,7 @@ class AssignmentListContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('AssignmentListContainer()');
     return BlocBuilder<AssignmentsCubit, AssignmentsState>(
       builder: (context, state) {
         if (state is AssignmentsFetchSuccess) {

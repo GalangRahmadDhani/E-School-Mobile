@@ -274,6 +274,7 @@ class ChildDetailMenuScreenState extends State<ChildDetailMenuScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('ChildDetailMenuScreen()');
     return Scaffold(
       body: Stack(
         children: [

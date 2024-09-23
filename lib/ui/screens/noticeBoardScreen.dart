@@ -15,6 +15,7 @@ class NoticeBoardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('NoticeBoardScreen()');
     return Scaffold(
       body: NoticeBoardContainer(
         childId: childId,

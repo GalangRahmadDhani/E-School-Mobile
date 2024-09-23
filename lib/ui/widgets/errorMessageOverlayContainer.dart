@@ -49,6 +49,7 @@ class _ErrorMessageOverlayContainerState
 
   @override
   Widget build(BuildContext context) {
+    print('ErrorMessageOverlayContainer()');
     return AnimatedBuilder(
       animation: slideAnimation,
       builder: (context, child) {

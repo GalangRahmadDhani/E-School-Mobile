@@ -39,6 +39,7 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('PrivacyPolicyScreen()');
     return Scaffold(
       body: Stack(
         children: [

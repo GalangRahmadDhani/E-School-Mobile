@@ -41,6 +41,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('TransactionsScreen()');
     return Scaffold(
         body: Stack(
       children: [
@@ -159,6 +160,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                         Text(Utils.getTranslatedLabel(
                             context, transactionIdKey)),
                         Text(
+                          // "1",
                           "${transaction.orderId}",
                           style: TextStyle(
                               fontSize: 13.0,

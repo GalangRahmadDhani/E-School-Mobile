@@ -58,6 +58,14 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  String? getToken() {
+    if (state is Authenticated) {
+      return (state as Authenticated)
+          .jwtToken; // Mengembalikan token dari state
+    }
+    return null; // Jika tidak terautentikasi, kembalikan null
+  }
+
   void authenticateUser({
     required String jwtToken,
     required bool isStudent,

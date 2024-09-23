@@ -86,6 +86,7 @@ class ExamContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('ExamContainer()');
     return BlocBuilder<ExamTabSelectionCubit, ExamTabSelectionState>(
       builder: (context, state) {
         return Stack(

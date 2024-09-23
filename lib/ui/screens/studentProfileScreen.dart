@@ -1,3 +1,4 @@
+import 'package:eschool/cubits/authCubit.dart';
 import 'package:eschool/cubits/schoolConfigurationCubit.dart';
 import 'package:eschool/cubits/studentAllProfileDetailsCubit.dart';
 import 'package:eschool/data/models/student.dart';
@@ -45,6 +46,14 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
   }
 
   void fetchStudentAllProfileDetails() {
+    // Ambil token dari tempat yang sesuai, misalnya dari SharedPreferences atau state management
+    String? token = context
+        .read<AuthCubit>()
+        .getToken(); // Ganti dengan cara Anda mendapatkan token
+    print("JWT Token: $token");
+
+    // Debugging: Log sebelum mengirim permintaan
+    print("Fetching student profile details with childId: ${widget.childId}");
     context.read<StudentAllProfileDetailsCubit>().getStudentAllProfileDetails(
         useParentApi: widget.childId != null, childId: widget.childId);
   }
@@ -429,16 +438,21 @@ class _StudentProfileScreenState extends State<StudentProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('StudentProfileScreen()');
     return Scaffold(
       body: Stack(
         children: [
           BlocBuilder<StudentAllProfileDetailsCubit,
               StudentAllProfileDetailsState>(builder: (context, state) {
             if (state is StudentAllProfileDetailsFetchSuccess) {
+              print(
+                  "Student profile details fetched successfully: ${state.student}");
               return _buildProfileDetailsContainer(
                   studentDetails: state.student);
             }
             if (state is StudentAllProfileDetailsFetchFailure) {
+              print(
+                  "Error fetching student profile details: ${state.errorMessage}");
               return Center(
                 child: ErrorContainer(
                   errorMessageCode: state.errorMessage,

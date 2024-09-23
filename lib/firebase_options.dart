@@ -50,19 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCpb7FV7ftE4RUASyGgoQVoi4I_AAcntcc',
-    appId: '1:539033120705:android:10f3b01274c5d641d8c940',
-    messagingSenderId: '539033120705',
-    projectId: 'e-school-saas',
-    storageBucket: 'e-school-saas.appspot.com',
+    apiKey: 'AIzaSyBW2OjGW7kmYe3xG3u6S_YjFgzW-NU4l50',
+    appId: '1:198557167946:android:f4fbb768047b8f0a3b11b3',
+    messagingSenderId: '198557167946',
+    projectId: 'eschoolmobile-9785a',
+    storageBucket: 'e-school-mobile-42e82.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDGi2fMwfpdcA5jTbB6b97n8EoL_Ag9-2M',
-    appId: '1:539033120705:ios:9b3f891bf6fec49cd8c940',
-    messagingSenderId: '539033120705',
-    projectId: 'e-school-saas',
-    storageBucket: 'e-school-saas.appspot.com',
-    iosBundleId: 'com.wrteam.eschool.saas',
+    apiKey: 'AIzaSyCX-VV854M5q3Ajcis7iTyq4ZXCvbj4uks',
+    appId: '1:198557167946:ios:f68f880cdfeb18b43b11b3',
+    messagingSenderId: '198557167946',
+    projectId: 'eschoolmobile-9785a',
+    storageBucket: 'e-school-mobile-42e82.appspot.com',
+    iosBundleId: 'id.ac.upskilling.android',
   );
+
 }

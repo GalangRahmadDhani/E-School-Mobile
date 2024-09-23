@@ -220,6 +220,7 @@ class _SubjectDetailsScreenState extends State<SubjectDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('SubjectDetailsScreen()');
     return Scaffold(
       body: Stack(
         children: [

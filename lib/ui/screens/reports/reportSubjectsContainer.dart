@@ -131,6 +131,7 @@ class ReportSubjectsContainerState extends State<ReportSubjectsContainer> {
 
   @override
   Widget build(BuildContext context) {
+    print('ReportSubjectsContainer()');
     return (context.read<AuthCubit>().isParent())
         ? Scaffold(
             body: Stack(

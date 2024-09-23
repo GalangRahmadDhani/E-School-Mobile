@@ -34,6 +34,7 @@ class Installments extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('Installments()');
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 15),
       child: Column(

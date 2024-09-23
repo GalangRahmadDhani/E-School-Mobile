@@ -63,13 +63,13 @@ class _StudentLoginScreenState extends State<StudentLoginScreen>
   final TextEditingController _grNumberTextEditingController =
       TextEditingController(
           text: showDefaultCredentials
-              ? defaultStudentGRNumber
+              ? ''
               : null); //default grNumber
 
   final TextEditingController _passwordTextEditingController =
       TextEditingController(
           text: showDefaultCredentials
-              ? defaultStudentPassword
+              ? ''
               : null); //default password
 
   bool _hidePassword = true;
@@ -158,7 +158,7 @@ class _StudentLoginScreenState extends State<StudentLoginScreen>
           position: _patterntAnimation.drive(
             Tween<Offset>(begin: const Offset(0.0, -1.0), end: Offset.zero),
           ),
-          child: Image.asset(Utils.getImagePath("upper_pattern.png")),
+          child: Image.asset(Utils.getImagePath("upper_pattern_red.png")),
         ),
       ),
     );
@@ -173,7 +173,7 @@ class _StudentLoginScreenState extends State<StudentLoginScreen>
           position: _patterntAnimation.drive(
             Tween<Offset>(begin: const Offset(0.0, 1.0), end: Offset.zero),
           ),
-          child: Image.asset(Utils.getImagePath("lower_pattern.png")),
+          child: Image.asset(Utils.getImagePath("lower_pattern_red.png")),
         ),
       ),
     );
@@ -337,7 +337,7 @@ class _StudentLoginScreenState extends State<StudentLoginScreen>
                                   style: TextStyle(
                                     fontSize: 16.0,
                                     color:
-                                        Utils.getColorScheme(context).primary,
+                                        Utils.getColorScheme(context).secondary,
                                   ),
                                   text: Utils.getTranslatedLabel(
                                     context,
@@ -350,7 +350,7 @@ class _StudentLoginScreenState extends State<StudentLoginScreen>
                                     fontWeight: FontWeight.w500,
                                     fontSize: 16.0,
                                     color:
-                                        Utils.getColorScheme(context).secondary,
+                                        Utils.getColorScheme(context).primary,
                                   ),
                                   text:
                                       "${Utils.getTranslatedLabel(context, parentKey)}?",
@@ -380,6 +380,7 @@ class _StudentLoginScreenState extends State<StudentLoginScreen>
 
   @override
   Widget build(BuildContext context) {
+    print('StudentLoginScreen()');
     return Scaffold(
       body: Stack(
         children: [

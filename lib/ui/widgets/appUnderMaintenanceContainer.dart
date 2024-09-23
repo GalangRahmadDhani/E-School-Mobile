@@ -17,7 +17,7 @@ class AppUnderMaintenanceContainer extends StatelessWidget {
             fit: BoxFit.cover,
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * (0.0125),
+            height: MediaQuery.of(context).size.height * (0.01257),
           ),
           Padding(
             padding: const EdgeInsets.all(20),

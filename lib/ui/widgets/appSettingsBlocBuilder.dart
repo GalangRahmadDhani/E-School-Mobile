@@ -14,6 +14,7 @@ class AppSettingsBlocBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('AppSettingsBlocBuilder()');
     return BlocBuilder<AppSettingsCubit, AppSettingsState>(
       builder: (context, state) {
         if (state is AppSettingsFetchSuccess) {
@@ -25,7 +26,7 @@ class AppSettingsBlocBuilder extends StatelessWidget {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 40),
                   child: HtmlWidget(state.appSettingsResult),
                 )
               ],

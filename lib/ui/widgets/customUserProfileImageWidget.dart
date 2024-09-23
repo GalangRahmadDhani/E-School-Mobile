@@ -28,6 +28,7 @@ class CustomUserProfileImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('CustomUserProfileImageWidget()');
     return radius != null
         ? ClipRRect(
             borderRadius: radius!,

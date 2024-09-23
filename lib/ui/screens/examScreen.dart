@@ -20,6 +20,7 @@ class ExamScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('ExamScreen()');
     return Scaffold(
       body: ExamContainer(
         childId: childId,

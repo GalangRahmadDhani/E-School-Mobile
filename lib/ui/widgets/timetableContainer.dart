@@ -224,11 +224,12 @@ class _TimeTableContainerState extends State<TimeTableContainer>
   Widget _buildTimeTableSlotDetailsContainer({
     required TimeTableSlot timeTableSlot,
   }) {
-    ///[If the subject name is empty then it will consider as break]
-    final isBreak =
-        timeTableSlot.subject.getSubjectName(context: context).isEmpty;
+    // Cek apakah nama subjek adalah "break" dan ganti dengan "istirahat"
+    final subjectName = timeTableSlot.subject.getSubjectName(context: context);
+    final isBreak = subjectName.isEmpty || subjectName == "break";  // Perbarui logika isBreak
+
     final double imageWidth = MediaQuery.of(context).size.width * (0.175);
-    final double imageHeight = 60;
+    final double imageHeight = 70;
 
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
@@ -291,15 +292,15 @@ class _TimeTableContainerState extends State<TimeTableContainer>
                   ),
                 ),
                 Text(
-                  timeTableSlot.subject.getSubjectName(context: context).isEmpty
-                      ? timeTableSlot.note
+                  isBreak
+                      ? 'Istirahat'  // Ganti nama subjek "break" dengan "Istirahat"
                       : timeTableSlot.subject.getSubjectName(context: context),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onSurface,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 12.0,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14.0,
                   ),
                 ),
                 Text(
@@ -311,7 +312,7 @@ class _TimeTableContainerState extends State<TimeTableContainer>
                     fontWeight: FontWeight.w400,
                     fontSize: 12.0,
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -319,6 +320,7 @@ class _TimeTableContainerState extends State<TimeTableContainer>
       ),
     );
   }
+
 
   Widget _buildTimeTable() {
     return BlocBuilder<TimeTableCubit, TimeTableState>(

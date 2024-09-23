@@ -22,6 +22,7 @@ class HolidaysScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('HolidaysScreen()');
     return Scaffold(
       body: HolidaysContainer(
         childId: childId,

@@ -535,6 +535,7 @@ class _AssignmentScreenState extends State<AssignmentScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('AssignmentScreen()');
     return Scaffold(
       body: Stack(
         children: [

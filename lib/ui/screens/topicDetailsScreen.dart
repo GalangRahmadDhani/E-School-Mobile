@@ -222,6 +222,7 @@ class _TopicDetailsScreenState extends State<TopicDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('TopicDetailsScreen()');
     return Scaffold(
       body: Stack(
         children: [

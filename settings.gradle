@@ -1,0 +1,2 @@
+rootProject.name = 'siakad-ubig'
+include ':android'

@@ -69,6 +69,7 @@ class _AnnouncementContainerState extends State<AnnouncementContainer> {
   //
   @override
   Widget build(BuildContext context) {
+    print('AnnouncementContainer()');
     return BlocBuilder<SubjectAnnouncementCubit, SubjectAnnouncementState>(
       builder: (context, state) {
         if (state is SubjectAnnouncementFetchSuccess) {

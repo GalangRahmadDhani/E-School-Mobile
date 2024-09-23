@@ -1,6 +1,6 @@
 import 'package:eschool/utils/constants.dart';
-import 'package:eschool/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:eschool/utils/utils.dart'; // Pastikan Anda mengimpor utils jika diperlukan
 
 class ExamFiltersContainer extends StatefulWidget {
   final Function(int) onTapSubject;
@@ -27,6 +27,7 @@ class _ExamFiltersContainerState extends State<ExamFiltersContainer> {
 
   @override
   Widget build(BuildContext context) {
+    print('ExamFiltersContainer()');
     return SizedBox(
       height: 40,
       child: ListView.builder(
@@ -52,6 +53,12 @@ class _ExamFiltersContainerState extends State<ExamFiltersContainer> {
                     ? Theme.of(context).colorScheme.primary
                     : Colors.transparent,
                 borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: widget.selectedExamFilterIndex == index
+                      ? Theme.of(context).scaffoldBackgroundColor
+                      : Colors.grey, // Set to grey or the color you prefer
+                  width: 2.0, // Adjust width as needed
+                ),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 15),
               alignment: Alignment.center,
@@ -75,3 +82,4 @@ class _ExamFiltersContainerState extends State<ExamFiltersContainer> {
     );
   }
 }
+

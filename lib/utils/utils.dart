@@ -32,10 +32,10 @@ class Utils {
 
   static double screenContentTopPadding = 15.0;
   static double screenContentHorizontalPadding = 25.0;
-  static double screenTitleFontSize = 18.0;
+  static double screenTitleFontSize = 20.5;
   static double screenContentHorizontalPaddingInPercentage = 0.075;
 
-  static double screenSubTitleFontSize = 14.0;
+  static double screenSubTitleFontSize = 16.0;
   static double extraScreenContentTopPaddingForScrolling = 0.0275;
   static double appBarSmallerHeightPercentage = 0.17;
 
@@ -211,23 +211,36 @@ class Utils {
     return dateTimes.toSet().toList();
   }
 
-  static String formatTime(String time) {
-    final hourMinuteSecond = time.split(":");
-    final hour = int.parse(hourMinuteSecond.first) < 13
-        ? int.parse(hourMinuteSecond.first)
-        : int.parse(hourMinuteSecond.first) - 12;
-    final amOrPm = int.parse(hourMinuteSecond.first) > 12 ? "PM" : "AM";
-    return "${hour.toString().padLeft(2, '0')}:${hourMinuteSecond[1]} $amOrPm";
-  }
+  // static String formatTime(String time) {
+  //   final hourMinuteSecond = time.split(":");
+  //   final hour = int.parse(hourMinuteSecond.first) < 13
+  //       ? int.parse(hourMinuteSecond.first)
+  //       : int.parse(hourMinuteSecond.first) - 12;
+  //   final amOrPm = int.parse(hourMinuteSecond.first) > 12 ? "PM" : "AM";
+  //   return "${hour.toString().padLeft(2, '0')}:${hourMinuteSecond[1]} $amOrPm";
+  // }
+static String formatTime(String time) {
+  final hourMinuteSecond = time.split(":");
+  final hour = int.parse(hourMinuteSecond.first);
+  return "${hour.toString().padLeft(2, '0')}:${hourMinuteSecond[1]}";
+}
 
+
+  // static String formatAssignmentDueDate(
+  //   DateTime dateTime,
+  //   BuildContext context,
+  // ) {
+  //   final monthName = Utils.getMonthName(dateTime.month);
+  //   final hour = dateTime.hour < 13 ? dateTime.hour : dateTime.hour - 12;
+  //   final amOrPm = hour > 12 ? "PM" : "AM";
+  //   return "${Utils.getTranslatedLabel(context, dueKey)}, ${dateTime.day} $monthName ${dateTime.year}, ${hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')} $amOrPm";
+  // }
   static String formatAssignmentDueDate(
     DateTime dateTime,
     BuildContext context,
   ) {
     final monthName = Utils.getMonthName(dateTime.month);
-    final hour = dateTime.hour < 13 ? dateTime.hour : dateTime.hour - 12;
-    final amOrPm = hour > 12 ? "PM" : "AM";
-    return "${Utils.getTranslatedLabel(context, dueKey)}, ${dateTime.day} $monthName ${dateTime.year}, ${hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')} $amOrPm";
+    return "${Utils.getTranslatedLabel(context, dueKey)}, ${dateTime.day} $monthName ${dateTime.year}, ${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}";
   }
 
   static Future<void> showCustomSnackBar({
@@ -336,40 +349,41 @@ class Utils {
   }
 
   static String dateConverter(
-    DateTime myEndDate,
-    BuildContext contxt,
-    bool fromResult,
+      DateTime myEndDate,
+      BuildContext contxt,
+      bool fromResult,
   ) {
-    String date;
+      String date;
 
-    final formattedDate = intl.DateFormat('dd MMM, yyyy',
-            contxt.read<AppLocalizationCubit>().state.language.languageCode)
-        .add_jm()
-        .format(myEndDate);
+      final formattedDate = intl.DateFormat('dd MMM, yyyy',
+              contxt.read<AppLocalizationCubit>().state.language.languageCode)
+          .add_Hm() // Menggunakan format 24-jam
+          .format(myEndDate);
 
-    final formattedTime = intl.DateFormat('hh:mm a').format(myEndDate);
-    //check for today or tomorrow or specific date
-    final now = DateTime.now();
-    final today = DateTime(now.year, now.month, now.day);
-    final tomorrow = today.add(Duration(days: 1));
-    final checkEndDate =
-        DateTime(myEndDate.year, myEndDate.month, myEndDate.day);
+      final formattedTime = intl.DateFormat('HH:mm').format(myEndDate); // Mengubah menjadi format 24-jam
+      //check for today or tomorrow or specific date
+      final now = DateTime.now();
+      final today = DateTime(now.year, now.month, now.day);
+      final tomorrow = today.add(Duration(days: 1));
+      final checkEndDate =
+          DateTime(myEndDate.year, myEndDate.month, myEndDate.day);
 
-    if (checkEndDate == today) {
-      date = fromResult
-          ? "${Utils.getTranslatedLabel(contxt, submittedKey)} : ${Utils.getTranslatedLabel(contxt, todayKey)}" //
-          : "${Utils.getTranslatedLabel(contxt, todayKey)}, $formattedTime";
-    } else if (checkEndDate == tomorrow) {
-      date = fromResult
-          ? "${Utils.getTranslatedLabel(contxt, submittedKey)} : ${Utils.getTranslatedLabel(contxt, tomorrowKey)}"
-          : "${Utils.getTranslatedLabel(contxt, tomorrowKey)}, $formattedTime";
-    } else {
-      date = fromResult
-          ? '${Utils.getTranslatedLabel(contxt, submittedKey)} : ${formattedDate}'
-          : '$formattedDate';
-    }
-    return date;
+      if (checkEndDate == today) {
+        date = fromResult
+            ? "${Utils.getTranslatedLabel(contxt, submittedKey)} : ${Utils.getTranslatedLabel(contxt, todayKey)}"
+            : "${Utils.getTranslatedLabel(contxt, todayKey)}, $formattedTime";
+      } else if (checkEndDate == tomorrow) {
+        date = fromResult
+            ? "${Utils.getTranslatedLabel(contxt, submittedKey)} : ${Utils.getTranslatedLabel(contxt, tomorrowKey)}"
+            : "${Utils.getTranslatedLabel(contxt, tomorrowKey)}, $formattedTime";
+      } else {
+        date = fromResult
+            ? '${Utils.getTranslatedLabel(contxt, submittedKey)} : ${formattedDate}'
+            : '$formattedDate';
+      }
+      return date;
   }
+
 
   //It will return - if given value is empty
   static String formatEmptyValue(String value) {

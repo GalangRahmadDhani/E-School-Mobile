@@ -16,6 +16,7 @@ import 'package:eschool/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:window_manager/window_manager.dart';
 
 class SettingsContainer extends StatelessWidget {
   const SettingsContainer({Key? key}) : super(key: key);
@@ -126,29 +127,29 @@ class SettingsContainer extends StatelessWidget {
   Widget _buildSettingsContainer(BuildContext context) {
     return Column(
       children: [
-        BlocBuilder<AppLocalizationCubit, AppLocalizationState>(
-          builder: (context, state) {
-            final String languageName = appLanguages
-                .where(
-                  (element) =>
-                      element.languageCode == state.language.languageCode,
-                )
-                .toList()
-                .first
-                .languageName;
-            return _buildSettingDetailsTile(
-              icon: Icons.translate,
-              title: languageName,
-              onTap: () async {
-                Utils.showBottomSheet(
-                  child: const ChangeLanguageBottomsheetContainer(),
-                  context: context,
-                );
-              },
-              context: context,
-            );
-          },
-        ),
+        // BlocBuilder<AppLocalizationCubit, AppLocalizationState>(
+        //   builder: (context, state) {
+        //     final String languageName = appLanguages
+        //         .where(
+        //           (element) =>
+        //               element.languageCode == state.language.languageCode,
+        //         )
+        //         .toList()
+        //         .first
+        //         .languageName;
+        //     return _buildSettingDetailsTile(
+        //       icon: Icons.translate,
+        //       title: languageName,
+        //       onTap: () async {
+        //         Utils.showBottomSheet(
+        //           child: const ChangeLanguageBottomsheetContainer(),
+        //           context: context,
+        //         );
+        //       },
+        //       context: context,
+        //     );
+        //   },
+        // ),
         context.read<AuthCubit>().isParent()
             ? _buildSettingDetailsTile(
                 icon: Icons.receipt,
@@ -223,22 +224,22 @@ class SettingsContainer extends StatelessWidget {
           },
           context: context,
         ),
-        _buildSettingDetailsTile(
-          icon: Icons.star,
-          title: Utils.getTranslatedLabel(context, rateUsKey),
-          onTap: () {
-            _shareApp(context);
-          },
-          context: context,
-        ),
-        _buildSettingDetailsTile(
-          icon: Icons.share,
-          title: Utils.getTranslatedLabel(context, shareKey),
-          onTap: () {
-            _shareApp(context);
-          },
-          context: context,
-        ),
+        // _buildSettingDetailsTile(
+        //   icon: Icons.star,
+        //   title: Utils.getTranslatedLabel(context, rateUsKey),
+        //   onTap: () {
+        //     _shareApp(context);
+        //   },
+        //   context: context,
+        // ),
+        // _buildSettingDetailsTile(
+        //   icon: Icons.share,
+        //   title: Utils.getTranslatedLabel(context, shareKey),
+        //   onTap: () {
+        //     _shareApp(context);
+        //   },
+        //   context: context,
+        // ),
       ],
     );
   }
@@ -269,7 +270,7 @@ class SettingsContainer extends StatelessWidget {
                   height: 5.0,
                 ),
                 Text(
-                  "${Utils.getTranslatedLabel(context, appVersionKey)}  ${context.read<AppConfigurationCubit>().getAppVersion()}",
+                  "${Utils.getTranslatedLabel(context, appVersionKey)}  ${context.read<AppConfigurationCubit>().getAppVersion() ?? 'N/A'}",
                   style: TextStyle(
                     color: Theme.of(context).colorScheme.onSurface,
                     fontWeight: FontWeight.w500,

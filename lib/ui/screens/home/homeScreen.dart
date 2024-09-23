@@ -495,6 +495,7 @@ class HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
+    print('HomeScreen()');
     return PopScope(
       canPop: canPopScreen(),
       onPopInvoked: (value) {
@@ -620,7 +621,7 @@ class HomeScreenState extends State<HomeScreen>
                           ),
                           CustomRoundedButton(
                             height: 40,
-                            widthPercentage: 0.3,
+                            widthPercentage: 0.37,
                             backgroundColor:
                                 Theme.of(context).colorScheme.primary,
                             onTap: () {

@@ -21,6 +21,7 @@ class ChildAttendanceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('ChildAttendanceScreen()');
     return Scaffold(
       body: AttendanceContainer(
         childId: childId,

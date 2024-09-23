@@ -254,7 +254,7 @@ class _ParentHomeScreenState extends State<ParentHomeScreen> {
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 7.5),
                             child: Text(
-                              "${Utils.getTranslatedLabel(context, classKey)} - ${student.classSection?.fullName}",
+                              "${student.classSection?.fullName}",
                               style: TextStyle(
                                 color:
                                     Theme.of(context).scaffoldBackgroundColor,

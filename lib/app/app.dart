@@ -200,6 +200,7 @@ class _MyAppState extends State<MyApp> {
               context.watch<AppLocalizationCubit>().state.language;
 
           return MaterialApp(
+            title: 'E-School',
             navigatorKey: Utils.rootNavigatorKey,
             theme: Theme.of(context).copyWith(
               textTheme:

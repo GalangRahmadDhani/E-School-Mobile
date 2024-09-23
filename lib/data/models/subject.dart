@@ -17,16 +17,31 @@ class Subject {
   final int? classSubjectId;
   final String? nameWithType;
 
+  // FUNGSI BUAT NAMPILIN NAMA MAPEL
+
+  // String getSubjectName({required BuildContext context}) {
+  //   if ((type ?? "").isEmpty) {
+  //     return (nameWithType ?? "");
+  //   }
+
+  //   String translatedType = Utils.getTranslatedLabel(
+  //       context, isPractial() ? practicalKey : theoryKey);
+
+  //   return "(${name ?? ''} - $translatedType)";
+  // }
+
+  // FUNGSI BUAT NAMPILIN CODE MAPEL
+
   String getSubjectName({required BuildContext context}) {
-    if ((type ?? "").isEmpty) {
-      return (nameWithType ?? "");
-    }
-
-    String translatedType = Utils.getTranslatedLabel(
-        context, isPractial() ? practicalKey : theoryKey);
-
-    return "(${name ?? ''} - $translatedType)";
+  if ((type ?? "").isEmpty) {
+    return (code ?? "");
   }
+
+  String translatedType = Utils.getTranslatedLabel(
+      context, isPractial() ? practicalKey : theoryKey);
+
+  return "${code ?? ''} - $translatedType";
+}
 
   bool isPractial() => "Practical" == (type ?? "");
 

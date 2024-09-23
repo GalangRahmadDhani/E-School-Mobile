@@ -357,6 +357,7 @@ class _ExamTimeTableState extends State<ExamTimeTableScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('ExamTimeTableScreen()');
     return Scaffold(
       body: Stack(
         children: [

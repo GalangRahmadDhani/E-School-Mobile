@@ -91,6 +91,7 @@ class ListItemForExamAndResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('listItemForExamAndResult()');
     return Animate(
       effects: listItemAppearanceEffects(itemIndex: index),
       child: GestureDetector(

@@ -12,6 +12,7 @@ class FeeInformationContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('FeeInformationContainer()');
     final valueTextStyle = TextStyle(
         fontSize: 13.0,
         color: Theme.of(context).colorScheme.secondary.withOpacity(0.9));

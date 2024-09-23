@@ -251,6 +251,7 @@ class _ExamOnlineListContainerState extends State<ExamOnlineListContainer> {
   }
 
   Widget buildMySubjectsListContainer() {
+    print('buildMySubjectsListContainer()');
     return BlocBuilder<StudentSubjectsAndSlidersCubit,
         StudentSubjectsAndSlidersState>(
       builder: (context, state) {
@@ -280,6 +281,7 @@ class _ExamOnlineListContainerState extends State<ExamOnlineListContainer> {
 
   @override
   Widget build(BuildContext context) {
+    print('ExamOnlineListContainer()');
     return CustomRefreshIndicator(
       displacment: Utils.getScrollViewTopPadding(
         context: context,

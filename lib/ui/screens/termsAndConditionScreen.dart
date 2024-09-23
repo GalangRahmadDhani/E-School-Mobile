@@ -40,6 +40,7 @@ class _TermsAndConditionScreenState extends State<TermsAndConditionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('TermsAndConditionScreen()');
     return Scaffold(
       body: Stack(
         children: [

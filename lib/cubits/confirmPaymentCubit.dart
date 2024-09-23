@@ -1,4 +1,4 @@
-import 'package:eschool/data/models/paymentTransaction.dart';
+import 'package:eschool/data/models/paymentTransaction.dart' show PaymentTransaction;
 import 'package:eschool/data/repositories/paymentRepository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

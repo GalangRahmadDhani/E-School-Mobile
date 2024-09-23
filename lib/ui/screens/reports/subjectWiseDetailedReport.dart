@@ -622,6 +622,7 @@ class SubjectWiseDetailedReportState extends State<SubjectWiseDetailedReport> {
 
   @override
   Widget build(BuildContext context) {
+    print('SubjectWiseDetailedReport()');
     return Scaffold(
       body: BlocBuilder<ReportTabSelectionCubit, ReportTabSelectionState>(
         builder: (context, state) {

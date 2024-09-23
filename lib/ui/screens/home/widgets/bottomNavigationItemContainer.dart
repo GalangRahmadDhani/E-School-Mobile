@@ -40,6 +40,7 @@ class BottomNavItemContainer extends StatefulWidget {
 class _BottomNavItemContainerState extends State<BottomNavItemContainer> {
   @override
   Widget build(BuildContext context) {
+    print('BottomNavItemContainer()');
     return InkWell(
       onTap: () async {
         widget.onTap(widget.index);
