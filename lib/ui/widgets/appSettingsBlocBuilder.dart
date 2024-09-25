@@ -22,6 +22,9 @@ class AppSettingsBlocBuilder extends StatelessWidget {
             padding: EdgeInsets.only(
               top: MediaQuery.of(context).size.height *
                   (Utils.appBarSmallerHeightPercentage + 0.025),
+                  //menambah bagian bawah
+              bottom: MediaQuery.of(context).size.height *
+                  (Utils.appBarSmallerHeightPercentage),
             ),
             child: Column(
               children: [

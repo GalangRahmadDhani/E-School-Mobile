@@ -82,7 +82,7 @@ class _HomeContainerState extends State<HomeContainer> {
               context: context,
               appBarHeightPercentage: Utils.appBarBiggerHeightPercentage,
             ),
-            color: Theme.of(context).colorScheme.primary,
+            color: Theme.of(context).colorScheme.secondary,
             onRefresh: () async {
               context
                   .read<SchoolConfigurationCubit>()

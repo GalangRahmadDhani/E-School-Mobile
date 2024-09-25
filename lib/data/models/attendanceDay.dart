@@ -23,21 +23,4 @@ class AttendanceDay {
     date = json['date'] == null ? DateTime.now() : DateTime.parse(json['date']);
     remark = json['remark'] ?? "";
   }
-
-  String getAttendanceType() {
-    switch (type) {
-      case 0:
-        return "Absent";
-      case 1:
-        return "Hadir";
-      case 2:
-        return "Sakit";
-      case 3:
-        return "Izin";
-      case 4:
-        return "Alpha";
-      default:
-        return "Unknown";
-    }
-  }
 }

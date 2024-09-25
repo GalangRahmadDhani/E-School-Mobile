@@ -93,6 +93,7 @@ class _BottomNavItemContainerState extends State<BottomNavItemContainer> {
                   overflow: TextOverflow.ellipsis,
                   style: const TextStyle(
                     fontSize: 11.5,
+                    // fontSize: 81.5,
                   ),
                 ),
               ),

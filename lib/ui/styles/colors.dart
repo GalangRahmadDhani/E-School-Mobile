@@ -12,6 +12,7 @@ const Color errorColor = Color(0xffff6769);
 const Color onBackgroundColor = Color(0xff484848);
 const Color onPrimaryColor = Color(0xff3bcc97);
 const Color onSecondaryColor = Color(0xff57cc99);
+const Color onPendingColor = Color(0xffe6b830);
 
 //shimmer loading colors
 final Color shimmerBaseColor = Colors.grey.shade300;

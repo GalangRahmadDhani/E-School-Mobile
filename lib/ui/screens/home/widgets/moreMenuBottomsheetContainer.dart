@@ -8,6 +8,7 @@ import 'package:eschool/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class MoreMenuBottomsheetContainer extends StatelessWidget {
   final Function onTapMoreMenuItemContainer;
@@ -54,10 +55,10 @@ class MoreMenuBottomsheetContainer extends StatelessWidget {
             const SizedBox(height: 10),
             SizedBox(
               width: boxConstraints.maxWidth * (0.3),
-              child: Text(
+              child: AutoSizeText(
                 Utils.getTranslatedLabel(context, menu.title),
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                //overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.secondary,
@@ -120,13 +121,13 @@ class MoreMenuBottomsheetContainer extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        AutoSizeText(
                           context
                               .read<AuthCubit>()
                               .getStudentDetails()
                               .getFullName(),
                           maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
+                          ///overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             color: Theme.of(context).colorScheme.secondary,
                             fontWeight: FontWeight.w500,
@@ -137,7 +138,7 @@ class MoreMenuBottomsheetContainer extends StatelessWidget {
                           children: [
                             Flexible(
                               child: Text(
-                                "${Utils.getTranslatedLabel(context, classKey)} : ${context.read<AuthCubit>().getStudentDetails().classSection?.fullName}",
+                                "${context.read<AuthCubit>().getStudentDetails().classSection?.fullName}",
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(

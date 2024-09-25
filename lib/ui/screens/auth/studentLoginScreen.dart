@@ -197,6 +197,7 @@ class _StudentLoginScreenState extends State<StudentLoginScreen>
                 left: MediaQuery.of(context).size.width * (0.075),
                 right: MediaQuery.of(context).size.width * (0.075),
                 top: MediaQuery.of(context).size.height * (0.25),
+                bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -211,7 +212,7 @@ class _StudentLoginScreenState extends State<StudentLoginScreen>
                     ),
                   ),
                   const SizedBox(
-                    height: 10.0,
+                    height: 0.0,
                   ),
                   Text(
                     "${Utils.getTranslatedLabel(context, welcomeBackKey)}, \n${Utils.getTranslatedLabel(context, youHaveBeenMissedKey)}",
@@ -380,14 +381,16 @@ class _StudentLoginScreenState extends State<StudentLoginScreen>
 
   @override
   Widget build(BuildContext context) {
-    print('StudentLoginScreen()');
-    return Scaffold(
-      body: Stack(
-        children: [
-          _buildLowerPattern(),
-          _buildUpperPattern(),
-          _buildLoginForm(),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Stack(
+          children: [
+            _buildLowerPattern(),
+            _buildUpperPattern(),
+            _buildLoginForm(),
+          ],
+        ),
       ),
     );
   }

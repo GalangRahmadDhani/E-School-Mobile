@@ -7,12 +7,14 @@ import 'package:eschool/ui/widgets/customShimmerContainer.dart';
 import 'package:eschool/ui/widgets/errorContainer.dart';
 import 'package:eschool/ui/widgets/screenTopBackgroundContainer.dart';
 import 'package:eschool/ui/widgets/shimmerLoadingContainer.dart';
+import 'package:eschool/ui/styles/colors.dart';
 
 import 'package:eschool/utils/labelKeys.dart';
 import 'package:eschool/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class AttendanceContainer extends StatefulWidget {
   final int? childId;
@@ -125,99 +127,82 @@ class _AttendanceContainerState extends State<AttendanceContainer> {
   }) {
     return GestureDetector(
       onTap: () {
-        // Toggle the state first before showing the modal
         setState(() {
-          isModalOpen = !isModalOpen;
+          isModalOpen = true; // Set isModalOpen true saat modal dibuka
         });
-
-        // Show the modal sheet without waiting for its return
+        
         showModalBottomSheet(
           context: context,
-          isScrollControlled: true, // Allows modal to take dynamic height
           builder: (context) {
-            return StatefulBuilder(
-              builder: (BuildContext context, StateSetter modalSetState) {
-                return WillPopScope(
-                  onWillPop: () async {
-                    // When the modal is closed, reset the arrow state
-                    setState(() {
-                      isModalOpen = false;
-                    });
-                    return true;
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(0.1), // Bottom padding of 0.1
-                    child: Wrap( // Makes height dynamic based on content
-                      children: [
-                        Container(
-                          width: MediaQuery.of(context).size.width, // Full width
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min, // Adjusts height based on content
-                            children: [
-                              Text(
-                                'Detail Absen',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              SizedBox(height: 10), // Example spacing
-                              
-                              // Row for 'Sakit'
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center, // Centers the row
-                                children: [
-                                  Text(
-                                    'Sakit: ',
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 10), // Example spacing
-                              
-                              // Row for 'Izin'
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center, // Centers the row
-                                children: [
-                                  Text(
-                                    'Izin: ',
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 10), // Example spacing
-                              
-                              // Row for 'Alpha'
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center, // Centers the row
-                                children: [
-                                  Text(
-                                    'Alpha: ',
-                                    style: TextStyle(fontSize: 16),
-                                  ),
-                                ],
-                              ),
-                              // Add more content for the modal sheet here
-                            ],
-                          ),
+            return Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                      Container(
+                        height: 4, // Tinggi garis
+                        width: 70, // Lebar garis
+                        decoration: BoxDecoration(
+                        color: Colors.black, // Warna garis
+                        borderRadius: BorderRadius.circular(16), // Border radius
                         ),
-                      ],
+                      ),
+                      SizedBox(height: 10),
+                    AutoSizeText(
+                      'Detail Absen',
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
                     ),
+                    SizedBox(height: 24),
+                  // Widget untuk menampilkan data absensi
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Sakit: ', style: TextStyle(fontSize: 16)),
+                      Text(
+                        // '${attendanceDays.where((element) => element.type == 2).length}',
+                        '0',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ],
                   ),
-                );
-              },
+                  SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Izin: ', style: TextStyle(fontSize: 16)),
+                      Text(
+                        // '${attendanceDays.where((element) => element.type == 3).length}',
+                        '0',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('Alpha: ', style: TextStyle(fontSize: 16)),
+                      Text(
+                        // '${attendanceDays.where((element) => element.type == 4).length}',
+                        '0',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 12),
+                ],
+              ),
             );
           },
         ).whenComplete(() {
-          // Ensure the arrow icon resets to down when modal is closed
           setState(() {
-            isModalOpen = false;
+            isModalOpen = false; // Set isModalOpen false saat modal ditutup
           });
         });
       },
       child: Container(
-        height: boxConstraints.maxWidth * 0.425, // Height according to box constraints
+        height: boxConstraints.maxWidth * 0.425,
         width: boxConstraints.maxWidth * 0.425,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
@@ -227,7 +212,7 @@ class _AttendanceContainerState extends State<AttendanceContainer> {
               color: backgroundColor.withOpacity(0.25),
               offset: const Offset(5, 5),
               blurRadius: 10,
-            )
+            ),
           ],
         ),
         child: Column(
@@ -241,9 +226,7 @@ class _AttendanceContainerState extends State<AttendanceContainer> {
                 fontSize: 20.0,
               ),
             ),
-            SizedBox(
-              height: boxConstraints.maxWidth * (0.45) * (0.125), // Spacing
-            ),
+            SizedBox(height: boxConstraints.maxWidth * (0.45) * (0.125)),
             CircleAvatar(
               radius: 25,
               backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -257,11 +240,10 @@ class _AttendanceContainerState extends State<AttendanceContainer> {
                 ),
               ),
             ),
-            // Add the arrow icon below the CircleAvatar
             Icon(
               isModalOpen
-                  ? Icons.keyboard_arrow_up // Up arrow when modal is open
-                  : Icons.keyboard_arrow_down, // Down arrow when modal is closed
+                  ? Icons.keyboard_arrow_up
+                  : Icons.keyboard_arrow_down,
               color: Theme.of(context).scaffoldBackgroundColor,
             ),
           ],
@@ -370,6 +352,9 @@ class _AttendanceContainerState extends State<AttendanceContainer> {
   Widget _buildCalendarContainer({
     required List<AttendanceDay> presentDays,
     required List<AttendanceDay> absentDays,
+    required List<AttendanceDay> alpaDays,
+    required List<AttendanceDay> sakitDays,
+    required List<AttendanceDay> izinDays,
   }) {
     print(firstDay.toString()); //start education year
     print(lastDay.toString());
@@ -439,6 +424,7 @@ class _AttendanceContainerState extends State<AttendanceContainer> {
           holidayDecoration: BoxDecoration(
             shape: BoxShape.circle,
             color: Theme.of(context).colorScheme.onPrimary,
+            // color: onPendingColor,
           ),
           selectedDecoration: BoxDecoration(
             shape: BoxShape.circle,
@@ -497,7 +483,7 @@ class _AttendanceContainerState extends State<AttendanceContainer> {
                     .where((element) => element.type == 1)
                     .toList();
                 List<AttendanceDay> absentDays = state.attendanceDays
-                    .where((element) => element.type == 0 || element.type == 2 || element.type == 3)
+                    .where((element) => element.type == 0)
                     .toList();
 
                 return Padding(

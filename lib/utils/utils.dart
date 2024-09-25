@@ -32,11 +32,11 @@ class Utils {
 
   static double screenContentTopPadding = 15.0;
   static double screenContentHorizontalPadding = 25.0;
-  static double screenTitleFontSize = 20.5;
+  static double screenTitleFontSize = 18;
   static double screenContentHorizontalPaddingInPercentage = 0.075;
 
   static double screenSubTitleFontSize = 16.0;
-  static double extraScreenContentTopPaddingForScrolling = 0.0275;
+  static double extraScreenContentTopPaddingForScrolling = 0.0175;
   static double appBarSmallerHeightPercentage = 0.17;
 
   static double appBarMediumtHeightPercentage = 0.195;
@@ -47,7 +47,7 @@ class Utils {
   static double appBarBiggerHeightPercentage = 0.25;
   static double appBarContentTopPadding = 25.0;
   static double bottomSheetTopRadius = 20.0;
-  static double subjectFirstLetterFontSize = 20;
+  static double subjectFirstLetterFontSize = 15;
 
   static double defaultProfilePictureHeightAndWidthPercentage = 0.175;
 

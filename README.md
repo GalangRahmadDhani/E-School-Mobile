@@ -50,3 +50,19 @@ flutter pub get
 pod install 
 pod update 
 ```
+
+# Update
+
+* 23/9/24
+- mengubah tema tampilan apps
+- mengubah nama mapel menjadi kode mapel
+- memperbaiki font dan button, yang dimana pada beberapa device menjadi overflow
+- memperbaiki konsistensi detail siswa
+- memperbaiki konsistensi beberapa ui
+- mengubah desain button pada page Tugas
+- mengubah beberapa warna svg Ketika timed out, dan kode 500 page
+- mengganti dependenci flutter_windowmanager yang tidak support ke window_manager
+- mengganti dependenci carousel_slider yang tidak support ke carousel_slider_plus
+- mengganti versi flutter_inappwebview ke any
+
+

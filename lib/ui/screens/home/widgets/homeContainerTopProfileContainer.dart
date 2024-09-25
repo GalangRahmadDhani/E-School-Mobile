@@ -4,7 +4,7 @@ import 'package:eschool/ui/widgets/screenTopBackgroundContainer.dart';
 import 'package:eschool/utils/labelKeys.dart';
 import 'package:eschool/utils/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';import 'package:auto_size_text/auto_size_text.dart';
 
 class HomeContainerTopProfileContainer extends StatelessWidget {
   const HomeContainerTopProfileContainer({super.key});
@@ -82,7 +82,7 @@ class HomeContainerTopProfileContainer extends StatelessWidget {
                             "",
                       ),
                       SizedBox(
-                        width: boxConstraints.maxWidth * (0.05),
+                        width: boxConstraints.maxWidth * (0.03  ),
                       ),
                       Expanded(
                         child: Column(
@@ -103,45 +103,75 @@ class HomeContainerTopProfileContainer extends StatelessWidget {
                                     Theme.of(context).scaffoldBackgroundColor,
                               ),
                             ),
+                            // Row(
+                            //   crossAxisAlignment: CrossAxisAlignment.center,  // Centers all the content vertically
+                            //   children: [
+                            //     Flexible(
+                            //       child: Text(
+                            //         "${context.read<AuthCubit>().getStudentDetails().classSection?.fullName}",
+                            //         maxLines: 1,
+                            //         overflow: TextOverflow.ellipsis,
+                            //         style: TextStyle(
+                            //           fontSize: 13.0,
+                            //           fontWeight: FontWeight.w300,
+                            //           color: Theme.of(context).scaffoldBackgroundColor,
+                            //         ),
+                            //       ),
+                            //     ),
+                            //     // const SizedBox(
+                            //     //   width: 5.0,
+                            //     // ),
+                            //     // Container(
+                            //     //   width: 1.5,
+                            //     //   height: 12.0,
+                            //     //   color: Theme.of(context).scaffoldBackgroundColor,
+                            //     // ),
+                            //     // const SizedBox(
+                            //     //   width: 5.0,
+                            //     // ),
+                            //     Flexible(        
+                            //         child: Text(
+                            //           "${Utils.getTranslatedLabel(context, rollNoKey)} : ${context.read<AuthCubit>().getStudentDetails().rollNumber}",
+                            //           maxLines: 1,
+                            //           overflow: TextOverflow.ellipsis,
+                            //           style: TextStyle(
+                            //             fontSize: 13.0,
+                            //             fontWeight: FontWeight.w300,
+                            //             color: Theme.of(context).scaffoldBackgroundColor,
+                            //           ),
+                            //         ),         
+                            //     ),
+                            //   ],
+                            // )
                             Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,  // Centers all the content vertically
                               children: [
                                 Flexible(
-                                  child: Text(
-                                    "${context.read<AuthCubit>().getStudentDetails().classSection?.fullName}",
-                                    // "halo",
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.w400,
-                                      color: Theme.of(context)
-                                          .scaffoldBackgroundColor,
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 10.0,
-                                ),
-                                Container(
-                                  width: 1.5,
-                                  height: 12.0,
-                                  color:
-                                      Theme.of(context).scaffoldBackgroundColor,
-                                ),
-                                const SizedBox(
-                                  width: 10.0,
-                                ),
-                                Flexible(
-                                  child: Text(
-                                    "${Utils.getTranslatedLabel(context, rollNoKey)} : ${context.read<AuthCubit>().getStudentDetails().rollNumber}",
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.w400,
-                                      color: Theme.of(context)
-                                          .scaffoldBackgroundColor,
-                                    ),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,  // Supaya teks rata kiri
+                                    children: [
+                                      Text(
+                                        "${context.read<AuthCubit>().getStudentDetails().classSection?.fullName}",
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontSize: 13.0,
+                                          fontWeight: FontWeight.w300,
+                                          color: Theme.of(context).scaffoldBackgroundColor,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 4.0),  // Memberikan jarak antara teks pertama dan kedua
+                                      Text(
+                                        "${Utils.getTranslatedLabel(context, rollNoKey)} : ${context.read<AuthCubit>().getStudentDetails().rollNumber}",
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontSize: 13.0,
+                                          fontWeight: FontWeight.w300,
+                                          color: Theme.of(context).scaffoldBackgroundColor,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],

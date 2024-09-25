@@ -17,6 +17,7 @@ import 'package:eschool/ui/widgets/screenTopBackgroundContainer.dart';
 import 'package:eschool/ui/widgets/tabBarBackgroundContainer.dart';
 import 'package:eschool/utils/labelKeys.dart';
 import 'package:eschool/utils/utils.dart';
+import 'package:eschool/ui/styles/colors.dart';
 
 class SubjectWiseDetailedReport extends StatefulWidget {
   final Subject subject;
@@ -480,8 +481,8 @@ class SubjectWiseDetailedReportState extends State<SubjectWiseDetailedReport> {
                 totalAssignmentAndPointsSection(
                   progressValue:
                       state.submittedAssignments! / state.assignments!,
-                  progressColor: Utils.getColorScheme(context).error,
-                  baseColor: Utils.getColorScheme(context).onPrimary,
+                  progressColor: Utils.getColorScheme(context).onPrimary,
+                  baseColor: onPendingColor,
                   statsTitle1: Utils.getTranslatedLabel(context, submittedKey),
                   statsValue1: state.submittedAssignments.toString(),
                   statsTitle2: Utils.getTranslatedLabel(context, pendingKey),

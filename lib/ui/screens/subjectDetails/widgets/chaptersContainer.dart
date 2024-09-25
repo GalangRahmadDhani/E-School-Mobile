@@ -50,7 +50,7 @@ class _ChaptersContainerState extends State<ChaptersContainer> {
                 Utils.getTranslatedLabel(context, chapterNameKey),
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurface,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w200,
                   fontSize: 12.0,
                 ),
                 textAlign: TextAlign.start,
@@ -74,7 +74,7 @@ class _ChaptersContainerState extends State<ChaptersContainer> {
                 Utils.getTranslatedLabel(context, chapterDescriptionKey),
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.onSurface,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w200,
                   fontSize: 12.0,
                 ),
                 textAlign: TextAlign.start,
@@ -86,7 +86,7 @@ class _ChaptersContainerState extends State<ChaptersContainer> {
                 lesson.description,
                 style: TextStyle(
                   color: Theme.of(context).colorScheme.secondary,
-                  fontWeight: FontWeight.w600,
+                  fontWeight: FontWeight.w400,
                   fontSize: 14.0,
                 ),
                 textAlign: TextAlign.start,

@@ -4,6 +4,7 @@ import 'package:eschool/ui/widgets/subjectImageContainer.dart';
 import 'package:eschool/utils/systemModules.dart';
 import 'package:eschool/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class StudentSubjectsContainer extends StatelessWidget {
   final String subjectsTitleKey;
@@ -66,7 +67,7 @@ class StudentSubjectsContainer extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             SubjectImageContainer(
-              showShadow: false,
+              showShadow: true,
               animate: animate,
               width: boxConstraints.maxWidth * (0.26),
               height: boxConstraints.maxWidth * (0.26),
@@ -74,14 +75,14 @@ class StudentSubjectsContainer extends StatelessWidget {
               subject: subject,
             ),
             5.sizedBoxHeight,
-            Text(
+            AutoSizeText(
               subject.getSubjectName(context: context),
               textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              // overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 color: Utils.getColorScheme(context).secondary,
-                fontWeight: FontWeight.w800,
+                fontWeight: FontWeight.w400,
                 fontSize: 14,
               ),
             )

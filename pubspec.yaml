@@ -75,6 +75,7 @@ dependencies:
   # flutter_inappwebview: 5.8.0
   flutter_inappwebview: any
   youtube_player_iframe: ^2.2.0
+  auto_size_text: ^3.0.0
   # webview_flutter: ^4.8.0
 dependency_overrides:
   # webview_flutter_android: 3.16.1
